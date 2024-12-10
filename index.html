@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gold Glitzert</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: url('background.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: black;
+    }
+    #poem-container {
+      position: relative;
+      width: 50%; /* Adjust as needed for the desired width */
+      max-height: 80%; /* Prevents overflow beyond viewport */
+      overflow-y: auto; /* Scrolls as the poem grows */
+      padding: 1rem;
+      text-align: center;
+    }
+    #poem {
+      position: relative;
+    }
+    .line {
+      font-size: 1.5rem;
+      margin: 0.5rem 0;
+      opacity: 1;
+    }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+    .fade-in {
+      animation: fadeIn 0.5s ease-in-out;
+    }
+  </style>
+</head>
+<body>
+  <div id="poem-container">
+    <div id="poem">
+      <p class="line">Unter dem Sand glitzert Gold,</p>
+    </div>
+  </div>
+  <script>
+    const strings = [
+      "Ein getragenes Medaillon, eine erzählte Geschichte,",
+      "Die Gezeiten hatten es vor Schaden bewahrt,",
+      "Ein Relikt, das von den Plänen des Ozeans begraben wurde,",
+      "Der Zeit verloren, jetzt von Hand gefunden,",
+      "Ein Geheimnis rührte sich im Sand,"
+    ];
+    let currentIndex = 0;
+
+    const poemElement = document.getElementById("poem");
+
+    document.getElementById("poem-container").addEventListener("click", () => {
+      let possibleIndex = Math.floor(Math.random() * strings.length);
+        while(currentIndex == possibleIndex) {
+          possibleIndex = Math.floor(Math.random() * strings.length);
+        }
+        currentIndex = possibleIndex;
+        // Add new line to the bottom
+        const newLine = document.createElement("p");
+        newLine.textContent = strings[currentIndex];
+        newLine.className = "line fade-in";
+        poemElement.appendChild(newLine);
+
+        // Increment index
+      
+    });
+  </script>
+</body>
+</html>
